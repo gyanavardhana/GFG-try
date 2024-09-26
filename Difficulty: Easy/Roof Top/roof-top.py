@@ -6,18 +6,18 @@ class Solution:
     #to gain an increase in altitude with each step.
     def maxStep(self, arr):
         #Your code here
-        m = 0
-        c = 0
+        c=0
+        m=0
         for i in range(1,len(arr)):
             if arr[i]>arr[i-1]:
                 c+=1
             else:
-                m = max(m,c)
+                m=max(m,c)
                 c=0
-        m = max(m,c)
+        m=max(m,c)
         return m
-            
-            
+                
+
 
 #{ 
  # Driver Code Starts
