@@ -6,27 +6,42 @@ class Node:
         self.left = None
 '''
 
-class Fix:
-    def __init__(self):
-        self.first=None
-        self.second=None
-        self.pred=Node(0)
-
 class Solution:
-    def solve(self,root,f):
-        if root:
-            self.solve(root.left,f)
-            if root.data<f.pred.data:
-                if not f.second:
-                    f.second=f.pred
-                f.first=root
-            f.pred=root
-            self.solve(root.right,f)
-    
     def correctBST(self, root):
-        f=Fix()
-        self.solve(root,f)
-        f.first.data,f.second.data=f.second.data,f.first.data
+    # your code here
+        c, stack = [], []
+        while root:
+            stack.append(root)
+            root = root.left
+        
+        while stack:
+            cur = stack.pop()
+            c.append(cur)
+            cur = cur.right
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+        
+        i = 0
+        while i < len(c) - 1:
+            if c[i].data > c[i+1].data:
+                break
+            i += 1
+            
+        j = len(c)-1
+        while j > 0:
+            if c[j].data < c[j-1].data:
+                break
+            j -= 1
+        
+        c[i].data, c[j].data = c[j].data, c[i].data
+
+        return root
+
+
+
+
+
 
 #{ 
  # Driver Code Starts
